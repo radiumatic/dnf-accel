@@ -87,7 +87,7 @@ case "$CMD" in
         > "$CACHE_ROOT/urls.txt"
 
         if [[ "$DNF_CMD" == "upgrade" ]] && [[ $# -eq 0 ]]; then
-            "$REAL_DNF" repoquery --upgrades --location > "$CACHE_ROOT/urls.txt" 2>/dev/null
+            "$REAL_DNF" repoquery --upgrades --location --latest-limit 1 > "$CACHE_ROOT/urls.txt" 2>/dev/null
         else
             "$REAL_DNF" download --url --resolve "$@" > "$CACHE_ROOT/urls.txt" 2>/dev/null
         fi
